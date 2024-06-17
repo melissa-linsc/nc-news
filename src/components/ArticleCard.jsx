@@ -10,7 +10,7 @@ export function ArticleCard({article}) {
     const date = createdAt.substring(0,10)
 
   return (
-    <Card sx={{ maxWidth: 350, minWidth: 350, margin: '1.5rem', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;' }}>
+    <Card sx={{ maxWidth: 350, minWidth: 350, minHeight: 390, margin: '1.5rem', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;' }}>
       <CardActionArea>
         <CardMedia
           component="img"
