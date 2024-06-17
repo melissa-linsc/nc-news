@@ -2,23 +2,35 @@ import { getArticles } from "../utils/api";
 import { useState, useEffect } from "react";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
+import { Link, useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 export function Articles() {
 
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getArticles().then((articles) => {
             setArticles(articles)
+            setIsLoading(false)
         })
     }, [])
+
+    if (isLoading) {
+        return (
+            <div className="spinner">
+                <CircularProgress color="secondary" />                
+            </div>
+        )
+    }
    
     return (
         <>  
             <h2>Articles</h2>
             <ul>
                 {articles.map((article) => {
-                    return <ArticleCard article={article} key={article.article_id} className='article-card'/>
+                    return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
                 })}
             </ul>
         </>

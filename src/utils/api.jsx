@@ -7,3 +7,10 @@ export function getArticles() {
         return articleData.data.articles
     })
 }
+
+export function getArticleById(article_id) {
+    return ncNews.get(`/articles/${article_id}`)
+    .then((articleData) => {
+        return articleData.data.article
+    })
+}

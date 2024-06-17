@@ -1,0 +1,39 @@
+.article {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.article h2 {
+    padding: 0;
+}
+
+#article-topic {
+    width: 6rem;
+    margin: 1rem 0;
+}
+
+#article-body {
+    margin: 1rem 0;
+}
+
+#article-title {
+    margin: 1rem 0;
+}
+
+.date-and-author {
+    color: rgb(221, 50, 50);
+}
+
+#article-date {
+    font-weight: 600;
+}
+
+.article-author {
+    display: flex;
+    align-items: center;
+}
+
+#article-username {
+    padding-left: 0.5rem;
+}
