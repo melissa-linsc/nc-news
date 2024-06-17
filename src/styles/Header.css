@@ -10,3 +10,12 @@ header {
 .header-icon {
     width: 1rem;
 }
+
+.header-link {
+    color: white;
+    text-decoration: none;
+}
+
+.header-link:hover {
+    color: black;
+}

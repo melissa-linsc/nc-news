@@ -1,0 +1,22 @@
+#login-comment-msg {
+    padding: 1rem 0;
+}
+
+#newComment-form {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+#newComment-form input {
+    padding: 0.5em;
+    width: 15rem;
+    min-height: 1rem;
+    resize: none;
+}
+
+#newComment-button {
+    background-color: rgb(221, 50, 50);
+}
+
+

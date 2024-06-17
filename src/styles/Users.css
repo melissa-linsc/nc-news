@@ -1,0 +1,36 @@
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.user-page {
+    padding: 2rem;
+}
+
+.user-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    width: 8rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-list li img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: scale-down;
+    border-radius: 50%;
+    border: 3px solid black
+}
+
+.user-list li img:hover {
+    border: 5px solid rgb(221, 50, 50);
+    cursor: pointer;
+}
+
+#username {
+    margin: 1rem 0;
+}
