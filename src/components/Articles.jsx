@@ -27,7 +27,7 @@ export function Articles() {
    
     return (
         <>  
-            <h2>Articles</h2>
+            <h2 id="articles-title">Articles</h2>
             <ul>
                 {articles.map((article) => {
                     return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>

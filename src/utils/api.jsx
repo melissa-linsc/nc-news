@@ -14,3 +14,10 @@ export function getArticleById(article_id) {
         return articleData.data.article
     })
 }
+
+export function getArticleComments(article_id) {
+    return ncNews.get(`/articles/${article_id}/comments`)
+    .then((articleData) => {
+        return articleData.data.comments
+    })
+}

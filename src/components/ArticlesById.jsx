@@ -1,7 +1,8 @@
 import { getArticleById } from "../utils/api";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import '../styles/ArticleById.css'
+import { Comments } from "./Comments";
+import '../styles/ArticlesById.css'
 import Chip from '@mui/material/Chip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CircularProgress } from "@mui/material";
@@ -32,6 +33,7 @@ export function ArticlesById() {
     const date = dateObj.toDateString() + " " + dateObj.toTimeString().substring(0,8)
 
     return (
+        <>
         <section className="article">
             <img src={currArticle.article_img_url} />
             <Chip id="article-topic" label={currArticle.topic} />
@@ -46,5 +48,9 @@ export function ArticlesById() {
             <p id="article-body">{currArticle.body}</p>
             <p id="article-commentCount">Comments: {currArticle.comment_count}</p>
         </section>
+        <section className="comment-section">
+            <Comments />
+        </section>
+        </>
     )
 }
