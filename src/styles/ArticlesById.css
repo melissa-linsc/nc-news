@@ -60,3 +60,16 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
+
+.voting-section {
+    display: flex;
+    margin: 2rem;
+}
+
+.voting-section p {
+    padding: 0 1rem;
+}
+
+.vote-button {
+    color:rgb(221, 50, 50);
+}

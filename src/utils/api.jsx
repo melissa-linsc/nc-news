@@ -21,3 +21,9 @@ export function getArticleComments(article_id) {
         return articleData.data.comments
     })
 }
+
+export function patchArticleVotes(article_id, newVotes) {
+    return ncNews.patch(`/articles/${article_id}`, newVotes).then((patchedArticle) => {
+        return patchedArticle.data.updatedArticle
+    })
+}

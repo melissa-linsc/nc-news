@@ -31,6 +31,9 @@ export function ArticleCard({article}) {
           <Typography variant="body2" color="text.secondary">
             {date}
           </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Votes:{article.votes}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

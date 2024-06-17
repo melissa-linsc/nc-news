@@ -2,6 +2,7 @@ import { getArticleById } from "../utils/api";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Comments } from "./Comments";
+import { ArticleVotes } from "./ArticleVotes";
 import '../styles/ArticlesById.css'
 import Chip from '@mui/material/Chip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -47,6 +48,9 @@ export function ArticlesById() {
             </div>
             <p id="article-body">{currArticle.body}</p>
             <p id="article-commentCount">Comments: {currArticle.comment_count}</p>
+        </section>
+        <section className="voting-section">
+            <ArticleVotes currArticle={currArticle}/>
         </section>
         <section className="comment-section">
             <Comments />
