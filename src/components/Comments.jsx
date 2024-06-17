@@ -15,6 +15,9 @@ export function Comments() {
         })
     }, [article_id])
 
+    if (!comments.length) {
+        return <p>No comments yet...</p>
+    }
 
     return (
         <>
