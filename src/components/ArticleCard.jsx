@@ -19,7 +19,7 @@ export function ArticleCard({article}) {
           alt="article image"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" fontWeight="900">
             {article.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
