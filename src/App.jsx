@@ -13,6 +13,7 @@ import { UserContext, UserProvider } from './components/UserProvider';
       <NavBar />
       <Routes>
         <Route path="/" element={<Articles />} />
+        <Route path="/:topic" element={<Articles />} />
         <Route path="/articles/:article_id" element={<ArticlesById />} />
         <Route path="/users" element={<Users />} />
       </Routes>

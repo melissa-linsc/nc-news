@@ -10,12 +10,14 @@ export function Articles() {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const {topic} = useParams()
+
     useEffect(() => {
-        getArticles().then((articles) => {
+        getArticles(topic).then((articles) => {
             setArticles(articles)
             setIsLoading(false)
         })
-    }, [])
+    }, [topic])
 
     if (isLoading) {
         return (
