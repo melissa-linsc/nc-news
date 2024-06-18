@@ -19,8 +19,6 @@ export function ArticlesById() {
 
     useEffect(() => {setCommentCount(currArticle.comment_count)}, [currArticle.comment_count])
 
-    console.log(commentCount, currArticle.comment_count)
-
     useEffect(() => {
         getArticleById(article_id).then((article) => {
             setCurrArticle(article)
