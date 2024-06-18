@@ -1,16 +1,26 @@
 import '../styles/NavBar.css'
 import { NavLink } from 'react-router-dom'
-
+import { useEffect, useState } from 'react'
+import { getTopics } from '../utils/api'
+import { capitaliseStr } from '../utils/capitaliseStr'
 
 export function NavBar() {
+
+    const [topics, setTopics] = useState([])
+    
+    useEffect(() => {
+        getTopics().then((topicData) => {
+            setTopics(topicData)
+        })
+    }, [])
 
     return (
         <>
             <nav>
                 <ul>
-                    <NavLink to='/coding' className='nav-link'><li>Coding</li></NavLink>
-                    <NavLink to='/cooking' className='nav-link'><li>Cooking</li></NavLink>
-                    <NavLink to='/football' className='nav-link'><li>Football</li></NavLink>
+                    {topics.map((topic) => {
+                        return <NavLink className='nav-link' to={`/topics/${topic.slug}`} key={topic.slug}><li>{capitaliseStr(topic.slug)}</li></NavLink>
+                    })}
                 </ul>
             </nav>
         </>

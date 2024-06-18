@@ -1,23 +1,39 @@
 import { getArticles } from "../utils/api";
+import { capitaliseStr } from "../utils/capitaliseStr";
 import { useState, useEffect } from "react";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export function Articles() {
 
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [sortbyInput, setSortByInput] = useState('created_at')
+    const [orderInput, setOrderInput] = useState('desc')
+
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const sortOption = searchParams.get("sort_by") || "created_at"
+    const orderOption = searchParams.get("order") || "desc"
+
+    useEffect(() => {
+        setSearchParams({})
+    }, [])
 
     const {topic} = useParams()
 
     useEffect(() => {
-        getArticles(topic).then((articles) => {
+        getArticles(topic, sortbyInput, orderInput).then((articles) => {
             setArticles(articles)
             setIsLoading(false)
         })
-    }, [topic])
+    }, [topic, sortbyInput, orderInput])
 
     if (isLoading) {
         return (
@@ -26,16 +42,62 @@ export function Articles() {
             </div>
         )
     }
+
+    function handleSortChange(event) {
+        setSortByInput(event.target.value)
+        setSearchParams({sort_by: event.target.value, order: orderOption})
+    }
+
+    function handleOrderChange(event) {
+        setOrderInput(event.target.value)
+        setSearchParams({sort_by: sortOption, order: event.target.value})
+    }
    
     return (
-        <>  
-            <h2 id="articles-title">Articles</h2>
+        <section className="articles-page">  
+            <div className='article-header'>
+                { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title">All Articles</h2>}
+                <div className='query-forms'>
+                <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' >
+                <InputLabel>Sort By</InputLabel>
+                <Select
+                    className='select-form'
+                    labelId="sortby-input"
+                    id="sortby-input"
+                    label="sortby"
+                    onChange={handleSortChange}
+                    value={sortbyInput}
+                >
+                    <MenuItem value="created_at">Date</MenuItem>
+                    <MenuItem value="title">Title</MenuItem>
+                    <MenuItem value="votes">Votes</MenuItem>
+                    <MenuItem value="author">Author</MenuItem>
+                    <MenuItem value="topic">Topic</MenuItem>
+                    <MenuItem value="comment_count">Comments</MenuItem>
+                </Select>
+                </FormControl>
+                <FormControl sx={{minWidth: 100 }} variant="standard" className='order-form'>
+                <InputLabel>Order</InputLabel>
+                <Select
+                    className='select-form'
+                    labelId="order-input"
+                    id="order-input"
+                    label="order"
+                    onChange={handleOrderChange}
+                    value={orderInput}
+                >
+                    <MenuItem value="desc">Descending</MenuItem>
+                    <MenuItem value="asc">Ascending</MenuItem>
+                </Select>
+                </FormControl>
+                </div>
+            </div>
             <ul>
                 {articles.map((article) => {
                     return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
                 })}
             </ul>
-        </>
+        </section>
     )
   
 }

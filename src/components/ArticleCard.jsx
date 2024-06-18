@@ -10,7 +10,7 @@ export function ArticleCard({article}) {
     const date = createdAt.substring(0,10)
 
   return (
-    <Card sx={{ maxWidth: 350, minWidth: 350, minHeight: 370, margin: '1.5rem', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;' }}>
+    <Card sx={{ maxWidth: 350, minWidth: 320, minHeight: 370, margin: '1.5rem', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;' }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -33,6 +33,9 @@ export function ArticleCard({article}) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Votes:{article.votes}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Comments:{article.comment_count}
           </Typography>
         </CardContent>
       </CardActionArea>

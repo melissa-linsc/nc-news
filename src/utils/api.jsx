@@ -2,8 +2,12 @@ import axios from "axios";
 
 const ncNews = axios.create({baseURL: 'https://nc-news-api-ewli.onrender.com/api'})
 
-export function getArticles(topic) {
-    return ncNews.get("/articles", {params: {topic}}).then((articleData) => {
+export function getArticles(topic, sortby, order) {
+    return ncNews.get("/articles", {params: {
+        topic:topic,
+        sort_by: sortby,
+        order: order
+    }}).then((articleData) => {
         return articleData.data.articles
     })
 }
@@ -43,4 +47,10 @@ export function getUsers() {
 
 export function deleteComments(comment_id) {
     return ncNews.delete(`/comments/${comment_id}`)
+}
+
+export function getTopics() {
+    return ncNews.get("/topics").then((topics) => {
+        return topics.data.topics
+    })
 }
