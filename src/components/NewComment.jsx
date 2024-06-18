@@ -5,10 +5,9 @@ import { useParams } from "react-router-dom";
 import '../styles/NewComment.css'
 import { TextField, Button } from "@mui/material";
 
-export function NewComment({comments, setComments}) {
+export function NewComment({comments, setComments, setCommentCount, commentCount}) {
 
     const [commentInput, setCommentInput] = useState('')
-    const [newComment, setNewComment] = useState({body: '', username: ''})
     const [successMessage, setSuccessMessage] = useState('')
 
     const {article_id} = useParams()
@@ -20,12 +19,13 @@ export function NewComment({comments, setComments}) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        setNewComment({body: commentInput, username: currentUser})
+        const newComment = {body: commentInput, username: currentUser}
         setCommentInput('')
-        console.log(newComment)
+    
         postComment(article_id, newComment).then((comment) => {
             setSuccessMessage('Comment Posted!')
-
+            const updatedCommentCount = commentCount + 1
+            setCommentCount(updatedCommentCount)
             setComments([comment, ...comments])
         }).catch((err) => {
             setSuccessMessage('Error commenting, please try again later')

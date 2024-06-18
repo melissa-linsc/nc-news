@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { NewComment } from "./NewComment";
 import '../styles/ArticlesById.css'
 
-export function Comments() {
+export function Comments({setCommentCount, commentCount}) {
 
     const {article_id} = useParams()
 
@@ -28,7 +28,7 @@ export function Comments() {
 
     return (
         <>
-            <NewComment comments={comments} setComments={setComments} />
+            <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
             <ul>
                 {comments.map((comment) => {
                     const dateObj = new Date(comment.created_at)

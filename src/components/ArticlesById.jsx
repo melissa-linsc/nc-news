@@ -15,6 +15,11 @@ export function ArticlesById() {
 
     const [currArticle, setCurrArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [commentCount, setCommentCount] = useState(currArticle.comment_count)
+
+    useEffect(() => {setCommentCount(currArticle.comment_count)}, [currArticle.comment_count])
+
+    console.log(commentCount, currArticle.comment_count)
 
     useEffect(() => {
         getArticleById(article_id).then((article) => {
@@ -48,14 +53,14 @@ export function ArticlesById() {
                 </div>
             </div>
             <p id="article-body">{currArticle.body}</p>
-            <p id="article-commentCount">Comments: {currArticle.comment_count}</p>
+            <p id="article-commentCount">Comments: {commentCount}</p>
         </section>
         <section className="voting-section">
             <ArticleVotes currArticle={currArticle}/>
         </section>
         <section className="comment-section">
             <h2>Comments</h2>
-            <Comments />
+            <Comments setCommentCount={setCommentCount} commentCount={commentCount}/>
         </section>
         </>
     )
