@@ -6,3 +6,19 @@ nav ul{
     align-items: center;
     font-size: 1.4rem;
 }
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.nav-link:hover {
+    color: rgb(221, 50, 50);
+}
+
+.nav-link.active {
+    color: rgb(221, 50, 50);
+}

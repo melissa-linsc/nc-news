@@ -30,24 +30,31 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     }
 
     function handleDelete(commentToRemove) {
+
        deleteComments(commentToRemove.comment_id).then(() => {
         setAlertMessage('Comment Deleted!')
-       })
-       .catch((err)=> {
-        setAlertMessage('Error deleting comment, try again later')
-       })
-       setComments((currComments) => {
-        const filteredComments = currComments.filter((comment) => {
-            return comment.comment_id !== commentToRemove.comment_id
-        })
-        return filteredComments
-        })
-        const updatedCommentCount = commentCount - 1
-        setCommentCount(updatedCommentCount)
         setShowAlertMessage(true)
-        setTimeout(() => {
+           setTimeout(() => {
             setShowAlertMessage(false)
         }, 4000)
+        setComments((currComments) => {
+            const filteredComments = currComments.filter((comment) => {
+                return comment.comment_id !== commentToRemove.comment_id
+            })
+            return filteredComments
+            })
+            const updatedCommentCount = commentCount - 1
+            setCommentCount(updatedCommentCount)
+       })
+       .catch((err)=> {
+            setComments(comments)
+            setAlertMessage('Error deleting comment, try again later')
+            setShowAlertMessage(true)
+            setTimeout(() => {
+                setShowAlertMessage(false)
+            }, 4000)
+       })
+     
     }
 
     return (

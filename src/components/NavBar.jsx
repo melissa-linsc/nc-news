@@ -1,4 +1,6 @@
 import '../styles/NavBar.css'
+import { NavLink } from 'react-router-dom'
+
 
 export function NavBar() {
 
@@ -6,9 +8,9 @@ export function NavBar() {
         <>
             <nav>
                 <ul>
-                    <li>Coding</li>
-                    <li>Cooking</li>
-                    <li>Football</li>
+                    <NavLink to='/coding' className='nav-link'><li>Coding</li></NavLink>
+                    <NavLink to='/cooking' className='nav-link'><li>Cooking</li></NavLink>
+                    <NavLink to='/football' className='nav-link'><li>Football</li></NavLink>
                 </ul>
             </nav>
         </>
