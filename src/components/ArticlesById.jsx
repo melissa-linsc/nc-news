@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Comments } from "./Comments";
 import { ArticleVotes } from "./ArticleVotes";
-import { NewComment } from "./NewComment";
 import '../styles/ArticlesById.css'
 import Chip from '@mui/material/Chip';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CircularProgress } from "@mui/material";
 
@@ -16,6 +17,8 @@ export function ArticlesById() {
     const [currArticle, setCurrArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [commentCount, setCommentCount] = useState(currArticle.comment_count)
+    const [alertMessage, setAlertMessage] = useState('')
+    const [showAlertMessage, setShowAlertMessage] = useState(false)
 
     useEffect(() => {setCommentCount(currArticle.comment_count)}, [currArticle.comment_count])
 
@@ -39,6 +42,12 @@ export function ArticlesById() {
 
     return (
         <>
+        { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
+            {alertMessage}
+        </Alert> : null }
+        { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
+            {alertMessage}
+        </Alert> : null }
         <section className="article">
             <img src={currArticle.article_img_url} />
             <Chip id="article-topic" label={currArticle.topic} />
@@ -58,7 +67,7 @@ export function ArticlesById() {
         </section>
         <section className="comment-section">
             <h2>Comments</h2>
-            <Comments setCommentCount={setCommentCount} commentCount={commentCount}/>
+            <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}/>
         </section>
         </>
     )

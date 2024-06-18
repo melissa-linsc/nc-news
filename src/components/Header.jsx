@@ -1,9 +1,13 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from "./UserProvider";
 import '../styles/Header.css'
 
 export function Header() {
+
+    const { currentUser } = useContext(UserContext)
 
     return (
         <header>

@@ -61,6 +61,14 @@ h2 {
     align-items: center;
 }
 
+#deleteComment-icon:hover {
+    color:rgb(221, 50, 50);
+}
+
+#deleteComment-icon {
+    float: right;
+}
+
 .voting-section {
     display: flex;
     margin: 2rem;
@@ -72,4 +80,10 @@ h2 {
 
 .vote-button {
     color:rgb(221, 50, 50);
+}
+
+.alert-message {
+    position: fixed;
+    width: 100%;
+    top: 0;
 }

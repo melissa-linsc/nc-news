@@ -40,3 +40,10 @@ export function getUsers() {
         return users.data.users
     })
 }
+
+export function deleteComments(comment_id) {
+    return ncNews.delete(`/comments/${comment_id}`)
+    .catch(error => {
+        console.error(error);
+    });
+}
