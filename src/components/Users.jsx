@@ -27,11 +27,11 @@ export function Users() {
 
     return (
     <section className='user-page'>
-        <h2>Users</h2>
-        {currentUser.length ? <h3>Current User: {currentUser}</h3> : null}
+        <h2 className="font-extrabold text-3xl">Users</h2>
+        {currentUser.username ? <h3>Current User: {currentUser.username}</h3> : null}
         <ul className='user-list'>
             {users.map((user) => {
-                return <li key={user.username} onClick={() => setCurrentUser(user.username)}>
+                return <li key={user.username} onClick={() => setCurrentUser(user)}>
                     <img src={user.avatar_url} />
                     <p id="username">{user.username}</p>
                 </li>

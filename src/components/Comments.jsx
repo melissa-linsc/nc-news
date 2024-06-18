@@ -78,11 +78,21 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                                 </div>
                                 <p id="comment-votes">votes: {comment.votes}</p>
                             </div>
-                            { currentUser === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon"></DeleteIcon> : null}
+                            { currentUser.username === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon"></DeleteIcon> : null}
                         </li>
                     )
                 })}
             </ul>
+            {/* <div className="chat chat-start">
+                <div className="chat-header">
+                    Obi-Wan Kenobi
+                    <time className="text-xs opacity-50">2 hours ago</time>
+                </div>
+                <div className="chat-bubble bg-red-300">You were the Chosen One!</div>
+                <div className="chat-footer opacity-50">
+                    Seen
+                </div>
+            </div> */}
         </>
     )
 }

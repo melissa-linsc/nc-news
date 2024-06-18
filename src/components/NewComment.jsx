@@ -19,7 +19,7 @@ export function NewComment({comments, setComments, setCommentCount, commentCount
 
     function handleSubmit(event) {
         event.preventDefault()
-        const newComment = {body: commentInput, username: currentUser}
+        const newComment = {body: commentInput, username: currentUser.username}
         setCommentInput('')
     
         postComment(article_id, newComment).then((comment) => {
@@ -34,7 +34,7 @@ export function NewComment({comments, setComments, setCommentCount, commentCount
 
     return (
         <section className="newComment-section">
-            { currentUser.length ? <form onSubmit={handleSubmit} id="newComment-form">
+            { currentUser.username ? <form onSubmit={handleSubmit} id="newComment-form">
                 <label htmlFor="comment-input"></label>
                 <TextField type="text" placeholder="Add comment" name="comment-input" id="comment-input" value={commentInput} onChange={handleChange} variant="outlined" required></TextField>
                 <Button type="submit"  id="newComment-button">Post</Button>
