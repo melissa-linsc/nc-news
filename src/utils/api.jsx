@@ -27,3 +27,16 @@ export function patchArticleVotes(article_id, newVotes) {
         return patchedArticle.data.updatedArticle
     })
 }
+
+export function postComment(article_id, newComment) {
+    return ncNews.post(`/articles/${article_id}/comments`, newComment).then((patchedArticle) => {
+        return patchedArticle.data.comment
+    })
+}
+
+export function getUsers() {
+    return ncNews.get(`/users`)
+    .then((users) => {
+        return users.data.users
+    })
+}

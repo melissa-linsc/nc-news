@@ -1,19 +1,26 @@
 import { getArticleComments } from "../utils/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { NewComment } from "./NewComment";
 import '../styles/ArticlesById.css'
 
-export function Comments() {
+export function Comments({setCommentCount, commentCount}) {
 
     const {article_id} = useParams()
 
     const [comments, setComments] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getArticleComments(article_id).then((comments) => {
             setComments(comments)
+            setIsLoading(false)
         })
     }, [article_id])
+
+    if (isLoading) {
+        return <p>Comments loading...</p>
+    }
 
     if (!comments.length) {
         return <p>No comments yet...</p>
@@ -21,7 +28,7 @@ export function Comments() {
 
     return (
         <>
-            <h2>Comments</h2>
+            <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
             <ul>
                 {comments.map((comment) => {
                     const dateObj = new Date(comment.created_at)

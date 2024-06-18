@@ -1,11 +1,12 @@
 import { patchArticleVotes } from '../utils/api';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function ArticleVotes({currArticle}) {
 
     const [votes, setVotes] = useState(currArticle.votes)
+    const [errorMessage, setErrorMessage] = useState('')
 
     function handleUpvoteClick() {
         const updatedVotes = votes + 1
@@ -17,6 +18,10 @@ export function ArticleVotes({currArticle}) {
 
         patchArticleVotes(currArticle.article_id, newVotes).then((article) => {
             setVotes(article.votes)
+        })
+        .catch((err) => {
+            setErrorMessage('Error voting, please try again later')
+            setVotes(votes)
         })
     }
 
@@ -32,7 +37,7 @@ export function ArticleVotes({currArticle}) {
             setVotes(article.votes)
         })
         .catch((err) => {
-            alert('Error voting')
+            setErrorMessage('Error voting, please try again later')
             setVotes(votes)
         })
     }
@@ -44,6 +49,7 @@ export function ArticleVotes({currArticle}) {
             <ThumbDownIcon className="vote-button" onClick={() => {
                 handleDownvoteClick()
             }}></ThumbDownIcon>
+            <p>{errorMessage}</p>
         </>
     )
 }
