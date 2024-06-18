@@ -69,7 +69,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                     const dateTime = date + " " + time
 
                     return (
-                        <li key={comment.comment_id} >
+                        <li key={comment.comment_id}>
                             <p id="comment-body">{comment.body}</p>
                             <div id="comment-info">
                                 <div>
