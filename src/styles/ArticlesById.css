@@ -45,9 +45,7 @@ h2 {
 }
 
 .comment-section ul li {
-    background-color: rgb(226, 225, 225);
     margin: 0.5rem 0;
-    padding: 0.5rem;
     border-radius: 1rem;
     width: 50rem;
 }

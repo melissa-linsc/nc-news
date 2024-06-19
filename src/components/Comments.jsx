@@ -60,7 +60,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     return (
         <>
             <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
-            <ul>
+            <ul className="flex content-start">
                 {comments.map((comment) => {
                     const dateObj = new Date(comment.created_at)
                     const date = comment.created_at.substring(0,10)
@@ -70,29 +70,23 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
 
                     return (
                         <li key={comment.comment_id}>
-                            <p id="comment-body">{comment.body}</p>
-                            <div id="comment-info">
-                                <div>
-                                    <p id="comment-author">{comment.author}</p>
-                                    <p id="comment-date">{dateTime}</p>
-                                </div>
-                                <p id="comment-votes">votes: {comment.votes}</p>
-                            </div>
-                            { currentUser.username === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon"></DeleteIcon> : null}
+                        <div className="chat chat-start w-9/10" >
+                        <div className="chat-header">
+                            {comment.author}
+                            <time className="text-xs opacity-50 ml-4">{dateTime}</time>
+                        </div>
+                        <div className="chat-bubble bg-slate-100">
+                            {comment.body}
+                            { currentUser.username === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon" className="ml-3"></DeleteIcon> : null}
+                        </div>
+                        <div className="chat-footer opacity-50">
+                            Votes: {comment.votes}
+                        </div>
+                        </div>
                         </li>
                     )
                 })}
             </ul>
-            {/* <div className="chat chat-start">
-                <div className="chat-header">
-                    Obi-Wan Kenobi
-                    <time className="text-xs opacity-50">2 hours ago</time>
-                </div>
-                <div className="chat-bubble bg-red-300">You were the Chosen One!</div>
-                <div className="chat-footer opacity-50">
-                    Seen
-                </div>
-            </div> */}
         </>
     )
 }
