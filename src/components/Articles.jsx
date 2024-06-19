@@ -63,13 +63,13 @@ export function Articles() {
    
     return (
         <section className="articles-page">  
-            <div className='article-header'>
+            <div className='article-header '>
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
-                <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' >
-                <InputLabel labeld="sortby-input">Sort By</InputLabel>
+                <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby'  >
+                <InputLabel labeld="sortby-input" className="dark:text-[#f8f8f2]">Sort By</InputLabel>
                 <Select
-                    className='select-form'
+                    className='select-form dark:text-[#f8f8f2] dark:border-red-400'
                     labelId="sortby-input"
                     id="sortby-input"
                     label="sortby"
@@ -85,9 +85,9 @@ export function Articles() {
                 </Select>
                 </FormControl>
                 <FormControl sx={{minWidth: 100 }} variant="standard" className='order-form'>
-                <InputLabel>Order</InputLabel>
+                <InputLabel className="dark:text-[#f8f8f2]">Order</InputLabel>
                 <Select
-                    className='select-form'
+                    className='select-form dark:text-[#f8f8f2]'
                     labelId="order-input"
                     id="order-input"
                     label="order"

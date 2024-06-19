@@ -19,7 +19,7 @@ export function NavBar() {
             <nav>
                 <ul>
                     {topics.map((topic) => {
-                        return <NavLink className='nav-link' to={`/topics/${topic.slug}`} key={topic.slug}><li>{capitaliseStr(topic.slug)}</li></NavLink>
+                        return <NavLink className='nav-link dark:text-[#f8f8f2] dark:hover:text-[#DD3232]' to={`/topics/${topic.slug}`} key={topic.slug}><li>{capitaliseStr(topic.slug)}</li></NavLink>
                     })}
                 </ul>
             </nav>

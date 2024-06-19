@@ -1,12 +1,15 @@
 import * as React from 'react';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 export function ArticleCard({article}) {
     const createdAt = article.created_at
     const date = createdAt.substring(0,10)
 
   return (
-    <div className="card min-w-[18rem] max-w-[23rem] h-[22rem] bg-base-100 shadow-xl my-7 mx-3 overflow-hidden">
-      <figure className='h-[8rem]' ><img src={article.article_img_url} alt="article-image"/></figure>
+    <div className="card min-w-[18rem] max-w-[23rem] h-[22rem] bg-base-100 shadow-xl my-7 mx-5 overflow-hidden">
+      <figure className='h-[8rem]' >
+        <img src={article.article_img_url} alt="article-image"/>
+      </figure>
       <div className="card-body px-4 py-4">
         <h2 className="card-title overflow-hidden">
           {article.title}
