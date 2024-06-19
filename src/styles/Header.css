@@ -16,6 +16,12 @@ header {
     text-decoration: none;
 }
 
+.header-link h1 {
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+
 .header-link:hover {
     color: black;
 }

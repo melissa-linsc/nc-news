@@ -19,6 +19,8 @@ h2 {
 
 #article-title {
     margin: 1rem 0;
+    font-weight: 800;
+    font-size: 1.5rem;
 }
 
 .date-and-author {
@@ -43,11 +45,14 @@ h2 {
 }
 
 .comment-section ul li {
-    background-color: rgb(226, 225, 225);
     margin: 0.5rem 0;
-    padding: 0.5rem;
     border-radius: 1rem;
     width: 50rem;
+}
+
+.comments-header {
+    font-weight: 800;
+    font-size: 1.5rem;
 }
 
 #comment-author {

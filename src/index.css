@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 * {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -15,3 +19,21 @@
   justify-content: center;
   padding: 3rem 0;
 }
+
+.page-not-found {
+  text-align: center;
+  margin: 0;
+  padding: 3rem 0;
+}
+
+.not-found {
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+
+.link-to-home button {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: rgb(221, 50, 50);
+}
+

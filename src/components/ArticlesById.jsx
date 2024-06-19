@@ -9,6 +9,8 @@ import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CircularProgress } from "@mui/material";
+import { ArticleNotFound } from "./ArticleNotFound";
+
 
 export function ArticlesById() {
 
@@ -20,14 +22,24 @@ export function ArticlesById() {
     const [alertMessage, setAlertMessage] = useState('')
     const [showAlertMessage, setShowAlertMessage] = useState(false)
 
+    const [error, setError] = useState(false)
+
     useEffect(() => {setCommentCount(currArticle.comment_count)}, [currArticle.comment_count])
 
     useEffect(() => {
         getArticleById(article_id).then((article) => {
+            setError(false)
             setCurrArticle(article)
             setIsLoading(false)
         })
+        .catch((err) => {
+            setError(true)
+        })
     }, [article_id])
+
+    if (error) {
+        return <ArticleNotFound />
+    }
 
     if (isLoading) {
         return (
@@ -66,7 +78,7 @@ export function ArticlesById() {
             <ArticleVotes currArticle={currArticle}/>
         </section>
         <section className="comment-section">
-            <h2>Comments</h2>
+            <h2 className="comments-header">Comments</h2>
             <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}/>
         </section>
         </>

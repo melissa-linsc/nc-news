@@ -5,6 +5,7 @@ import { Articles } from './components/Articles';
 import { ArticlesById } from './components/ArticlesById';
 import { Users } from './components/Users';
 import { UserContext, UserProvider } from './components/UserProvider';
+import { PageNotFound } from './components/PageNotFound';
  
  export function App() {
   return (
@@ -13,6 +14,7 @@ import { UserContext, UserProvider } from './components/UserProvider';
       <NavBar />
       <Routes>
         <Route path="/" element={<Articles />} />
+        <Route path="*" element={<PageNotFound />} />
         <Route path="/topics/:topic" element={<Articles />} />
         <Route path="/articles/:article_id" element={<ArticlesById />} />
         <Route path="/users" element={<Users />} />
