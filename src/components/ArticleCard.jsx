@@ -1,44 +1,23 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 
 export function ArticleCard({article}) {
     const createdAt = article.created_at
     const date = createdAt.substring(0,10)
 
   return (
-    <Card sx={{ maxWidth: 350, minWidth: 320, minHeight: 370, margin: '1.5rem', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;' }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image={article.article_img_url}
-          alt="article image"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div" fontWeight="900">
-            {article.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {article.author}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {article.topic}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {date}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Votes:{article.votes}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Comments:{article.comment_count}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div className="card min-w-[18rem] max-w-[23rem] h-[28rem] bg-base-100 shadow-xl my-7 mx-3 overflow-hidden">
+      <figure className='h-[12rem]' ><img src={article.article_img_url} alt="article-image"/></figure>
+      <div className="card-body px-4 py-4">
+        <h2 className="card-title overflow-hidden">
+          {article.title}
+        </h2>
+        <p className="overflow-hidden"> By {article.author}<span className="ml-4 overflow-hidden">{date}</span></p>
+        <div className="card-actions justify-end overflow-hidden pb-4">
+          <div className="badge badge-outline overflow-hidden px-3 py-3">Votes: {article.votes}</div> 
+          <div className="badge badge-outline overflow-hidden px-3 py-3">Comments: {article.comment_count}</div>
+          <div className="badge overflow-hidden bg-[#DD3232] border-[#DD3232] text-white px-3 py-3">{article.topic}</div>
+        </div>
+      </div>
+    </div>
   );
 }

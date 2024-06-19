@@ -67,7 +67,7 @@ export function Articles() {
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
                 <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' >
-                <InputLabel >Sort By</InputLabel>
+                <InputLabel labeld="sortby-input">Sort By</InputLabel>
                 <Select
                     className='select-form'
                     labelId="sortby-input"
@@ -100,7 +100,7 @@ export function Articles() {
                 </FormControl>
                 </div>
             </div>
-            <ul>
+            <ul className="px-[1rem]">
                 {articles.map((article) => {
                     return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
                 })}
