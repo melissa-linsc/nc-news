@@ -1,20 +1,24 @@
-import { getArticles, getTopics } from "../utils/api";
+import { getArticles, getTopics, getTotalArticles } from "../utils/api";
 import { capitaliseStr } from "../utils/capitaliseStr";
 import { useState, useEffect } from "react";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Pagination } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { PageNotFound } from "./PageNotFound";
+import { PagePagination } from "./Pagination";
 
-export function Articles() {
+export function Articles({page, setPage}) {
 
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
+    const [totalArticles, setTotalArticles] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -22,6 +26,7 @@ export function Articles() {
 
     const sortOption = searchParams.get("sort_by") || "created_at"
     const orderOption = searchParams.get("order") || "desc"
+    const pageOption = searchParams.get("p") || 1
 
     const [sortbyInput, setSortByInput] = useState(sortOption)
     const [orderInput, setOrderInput] = useState(orderOption)
@@ -29,7 +34,13 @@ export function Articles() {
     const {topic} = useParams()
 
     useEffect(() => {
-        getArticles(topic, sortOption, orderOption).then((articles) => {
+
+        getTotalArticles(topic).then((total) => {
+            setTotalArticles(total)
+            setTotalPages(Math.ceil(total / 10))
+        })
+
+        getArticles(topic, sortOption, orderOption, page).then((articles) => {
             setError(false)
             setArticles(articles)
             setIsLoading(false)
@@ -37,7 +48,7 @@ export function Articles() {
         .catch((err) => {
             setError(true)
         })
-    }, [topic, sortbyInput, orderInput])
+    }, [topic, sortbyInput, orderInput, page])
 
     if (error) {
         return <PageNotFound />
@@ -60,13 +71,14 @@ export function Articles() {
         setOrderInput(event.target.value)
         setSearchParams({sort_by: sortOption, order: event.target.value})
     }
-   
+
+
     return (
         <section className="articles-page">  
             <div className='article-header '>
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
-                <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby'  >
+                <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' className="formControl">
                 <InputLabel labeld="sortby-input" className="dark:text-[#f8f8f2]">Sort By</InputLabel>
                 <Select
                     className='select-form dark:text-[#f8f8f2] dark:border-red-400'
@@ -105,6 +117,7 @@ export function Articles() {
                     return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
                 })}
             </ul>
+            <PagePagination page={page} setPage={setPage} topic={topic} totalPages={totalPages}/>
         </section>
     )
   

@@ -34,7 +34,7 @@ export function Header() {
         <header className="dark:bg-[#1d1f2c]">
             <Link to="/" className='header-link'><h1 className="dark:text-[#f8f8f2] dark:hover:text-[#DD3232]">NCNews</h1></Link>
             <div className="header-icons flex items-center">
-            { currentUser.username ? <img src={currentUser.avatar_url} className="w-9 h-9 rounded-full border-2 object-cover mr-2" /> : <Link className='header-link' to="/users"><AccountCircleIcon className="header-icon mr-1 dark:hover:text-[#DD3232]" style={{fontSize: 40}}></AccountCircleIcon></Link>}
+            { currentUser.username ? <Link className='header-link' to="/users"><img src={currentUser.avatar_url} className="w-9 h-9 rounded-full border-2 object-cover mr-2" /></Link> : <Link className='header-link' to="/users"><AccountCircleIcon className="header-icon mr-1 dark:hover:text-[#DD3232]" style={{fontSize: 40}}></AccountCircleIcon></Link>}
                 <Link to='/bookmarked' className='header-link'><BookmarkIcon className="header-icon mr-1 dark:hover:text-[#DD3232]" style={{fontSize: 40}}></BookmarkIcon></Link>
                 <label className="swap swap-rotate overflow-hidden">
   
