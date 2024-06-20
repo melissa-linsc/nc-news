@@ -9,6 +9,7 @@ import { PageNotFound } from './components/PageNotFound';
 import { Bookmark } from './components/Bookmark';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { PostArticle } from './components/PostArticle';
 
 export const theme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ export const theme = createTheme({
 
   const [bookmarked, setBookmarked] = useState([])
   const [page, setPage] = useState(1)
+  const [articles, setArticles] = useState([])
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,12 +31,13 @@ export const theme = createTheme({
       <Header />
       <NavBar setPage={setPage}/>
       <Routes>
-        <Route path="/" element={<Articles page={page} setPage={setPage}/>} />
+        <Route path="/" element={<Articles articles={articles} setArticles={setArticles} page={page} setPage={setPage}/>} />
         <Route path="*" element={<PageNotFound />} />
-        <Route path="/topics/:topic" element={<Articles page={page} setPage={setPage}/>} />
+        <Route path="/topics/:topic" element={<Articles articles={articles} setArticles={setArticles} page={page} setPage={setPage}/>} />
         <Route path="/articles/:article_id" element={<ArticlesById bookmarked={bookmarked} setBookmarked={setBookmarked}/>} />
         <Route path="/users" element={<Users />} />
         <Route path="/bookmarked" element={<Bookmark bookmarked={bookmarked} setBookmarked={setBookmarked}/>} />
+        <Route path="/articles/upload" element={<PostArticle articles={articles} setArticles={setArticles}/>}/>
       </Routes>
     </UserProvider>
     </ThemeProvider>

@@ -72,3 +72,9 @@ export function patchCommentVotes(comment_id, newVotes) {
         return patchedComment.data.updatedComment
     })
 }
+
+export function postArticle(newArticle) {
+    return ncNews.post(`/articles`, newArticle).then((newArticle) => {
+        return newArticle.data.newArticle
+    })
+}
