@@ -44,9 +44,11 @@ export function ArticleVotes({currArticle}) {
 
     return (
         <>
-            <ThumbUpIcon className="vote-button" onClick={() => handleUpvoteClick()}></ThumbUpIcon>
+            <ThumbUpIcon className="vote-button
+            hover:cursor-pointer" onClick={() => handleUpvoteClick()}></ThumbUpIcon>
                 <p>{votes}</p>
-            <ThumbDownIcon className="vote-button" onClick={() => {
+            <ThumbDownIcon className="vote-button
+            hover:cursor-pointer" onClick={() => {
                 handleDownvoteClick()
             }}></ThumbDownIcon>
             <p>{errorMessage}</p>

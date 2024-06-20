@@ -46,7 +46,13 @@
   color: white;
 }
 
+
 .dark .card {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 20px, rgba(0, 0, 0, 0.22) 0px 10px 7px;
 }
 
+.MuiPagination-root {
+  ul {
+    flex-direction: row !important;
+  }
+}
