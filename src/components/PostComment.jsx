@@ -1,7 +1,7 @@
 import { postComment } from "../utils/api";
 import { useState, useContext } from "react";
 import { UserContext } from "./UserProvider";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import '../styles/NewComment.css'
 import { TextField, Button } from "@mui/material";
 
@@ -38,7 +38,10 @@ export function NewComment({comments, setComments, setCommentCount, commentCount
                 <label htmlFor="comment-input"></label>
                 <TextField type="text" placeholder="Add comment" name="comment-input" id="comment-input" value={commentInput} onChange={handleChange} variant="filled" required className="border-white dark:bg-white dark:opacity-60"></TextField>
                 <Button type="submit"  id="newComment-button">Post</Button>
-            </form> : <p id="login-comment-msg" className="p-[2rem]">Login to leave a comment</p>}
+            </form> : <div className="flex flex-col justify-center text-center pb-[1rem] my-0" >
+            <h2 className="font-bold p-[1rem]">Login to leave a comment</h2>
+              <Link to='/users' className="max-w-[20rem] m-auto"><button className="p-[0.8rem] rounded-lg bg-[#DD3232] text-white">Login</button></Link>
+        </div>}
             <p>{successMessage}</p>
         </section>
     )

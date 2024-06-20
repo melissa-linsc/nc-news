@@ -128,7 +128,7 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <ArticleVotes currArticle={currArticle}/>
         </section>
         <section className="comment-section ">
-            <h2 className="comments-header ml-[2rem]">Comments</h2>
+            <h2 className="comments-header ml-[2rem] mb-0">Comments</h2>
             <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}
             currArticle={currArticle}/>
         </section>
