@@ -5,7 +5,6 @@ import { UserContext } from './UserProvider';
 import { useContext } from 'react';
 import { deleteArticle } from '../utils/api';
 import { Link } from 'react-router-dom';
-import { Alert } from '@mui/material';
 
 export function ArticleCard({article, articles, setArticles, setAlertMessage, setShowAlertMessage}) {
     const createdAt = article.created_at
