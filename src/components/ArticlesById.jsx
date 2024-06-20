@@ -99,13 +99,13 @@ export function ArticlesById({setBookmarked, bookmarked}) {
         { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
             {alertMessage}
         </Alert> : null }
-        <section className="article lg:flex lg:flex-row">
+        <section className="article p-[1.5rem] lg:flex lg:flex-row">
             <img src={currArticle.article_img_url} className="max-w-[800px] lg:min-w-[600px] lg:mr-[2rem]"/>
             <div>
             <div className='flex items-center justify-between'>
                 <Chip id="article-topic" label={currArticle.topic} className="dark:bg-slate-200"/>
                 <div className="flex items-center">
-                    { !isBookmarked ? <BookmarkAddIcon style={{fontSize: '2rem'}} onClick={() => handleBookmarkAdd(currArticle)} className="hover:text-[#DD3232]"></BookmarkAddIcon> : <BookmarkRemove style={{fontSize: '2rem'}} onClick={() => handleBookmarkRemove(currArticle)} className="hover:text-[#DD3232]" ></BookmarkRemove>}
+                    { !isBookmarked ? <BookmarkAddIcon style={{fontSize: '2rem'}} onClick={() => handleBookmarkAdd(currArticle)} className="hover:text-[#DD3232] hover:cursor-pointer"></BookmarkAddIcon> : <BookmarkRemove style={{fontSize: '2rem'}} onClick={() => handleBookmarkRemove(currArticle)} className="hover:text-[#DD3232] hover:cursor-pointer" ></BookmarkRemove>}
                     <FacebookShareButton url={currentURL} className="w-[2rem] rounded"><FacebookIcon className="w-[1.8rem]" round={true}></FacebookIcon></FacebookShareButton>
                     <TwitterShareButton url={currentURL} className="w-[2rem] rounded"><TwitterIcon className="w-[1.8rem]" round={true}></TwitterIcon></TwitterShareButton>
                     <WhatsappShareButton url={currentURL} className="w-[2rem] rounded"><WhatsappIcon className="w-[1.8rem]" round={true}></WhatsappIcon></WhatsappShareButton>
@@ -123,12 +123,13 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <p id="article-commentCount">Comments: {commentCount}</p>
             </div>
         </section>
-        <section className="voting-section">
+        <section className="voting-section px-[1.5rem]">
             <ArticleVotes currArticle={currArticle}/>
         </section>
-        <section className="comment-section">
+        <section className="comment-section px-[1.5rem]">
             <h2 className="comments-header ml-[2rem]">Comments</h2>
-            <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}/>
+            <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}
+            currArticle={currArticle}/>
         </section>
         </>
     )

@@ -9,9 +9,8 @@ export function ArticlePagination({page, setPage, topic, totalPages}) {
 
     return (
         <section className="flex justify-center">
-            { topic ? <Pagination count={totalPages} className="py-5 pb-10 dark:text-[#f8f8f2]" onChange={(event, value) => handlePage(value)} color='primary' 
-            page={page}/> : <Pagination count={totalPages} color="primary" className="py-5 pb-10 dark:text-white" onChange={(event, value) => handlePage(value)}
-            page={page}/>  }
+            <Pagination count={totalPages} className="py-5 pb-10 dark:text-[#f8f8f2]" onChange={(event, value) => handlePage(value)} color='primary' 
+            page={page}/>
         </section>
     )
 }

@@ -5,9 +5,10 @@ import { useParams } from "react-router-dom";
 import { NewComment } from "./NewComment";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CommentPagination } from "./CommentPagination";
+import { CommentVotes } from "./CommentVotes";
 import '../styles/ArticlesById.css'
 
-export function Comments({setCommentCount, commentCount, setAlertMessage, setShowAlertMessage}) {
+export function Comments({setCommentCount, commentCount, setAlertMessage, setShowAlertMessage, currArticle}) {
 
     const {article_id} = useParams()
     const { currentUser } = useContext(UserContext)
@@ -15,12 +16,14 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const [commentPage, setCommentPage] = useState(1)
+
     useEffect(() => {
-        getArticleComments(article_id).then((comments) => {
+        getArticleComments(article_id, commentPage).then((comments) => {
             setComments(comments)
             setIsLoading(false)
         })
-    }, [article_id])
+    }, [article_id, commentPage])
 
     if (isLoading) {
         return <p>Comments loading...</p>
@@ -81,14 +84,14 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                             { currentUser.username === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon" className="ml-3"></DeleteIcon> : null}
                         </div>
                         <div className="chat-footer opacity-50">
-                            Votes: {comment.votes}
+                            <CommentVotes comment={comment}/>
                         </div>
                         </div>
                         </li>
                     )
                 })}
             </ul>
-            <CommentPagination comments={comments}/>
+            <CommentPagination currArticle={currArticle} commentPage={commentPage} setCommentPage={setCommentPage}/>
         </div>
     )
 }

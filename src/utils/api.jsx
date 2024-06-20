@@ -20,8 +20,10 @@ export function getArticleById(article_id) {
     })
 }
 
-export function getArticleComments(article_id) {
-    return ncNews.get(`/articles/${article_id}/comments`)
+export function getArticleComments(article_id, page) {
+    return ncNews.get(`/articles/${article_id}/comments`, {params: {
+        p: page
+    }})
     .then((articleData) => {
         return articleData.data.comments
     })
@@ -62,5 +64,11 @@ export function getTotalArticles(topic) {
         limit: 100
     }}).then((articles) => {
         return articles.data.articles.length
+    })
+}
+
+export function patchCommentVotes(comment_id, newVotes) {
+    return ncNews.patch(`/comments/${comment_id}`, newVotes).then((patchedComment) => {
+        return patchedComment.data.updatedComment
     })
 }
