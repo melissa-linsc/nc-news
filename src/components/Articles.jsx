@@ -63,7 +63,7 @@ export function Articles({articles, setArticles, page, setPage}) {
     if (isLoading) {
         return (
             <div className="spinner">
-                <CircularProgress color="secondary" />                
+                <CircularProgress color="primary" />                
             </div>
         )
     }

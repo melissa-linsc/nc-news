@@ -56,7 +56,7 @@ export function ArticlesById({setBookmarked, bookmarked}) {
     if (isLoading) {
         return (
             <div className="spinner">
-                <CircularProgress color="secondary" />                
+                <CircularProgress color="primary" />                
             </div>
         )
     }
