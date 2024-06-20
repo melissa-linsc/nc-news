@@ -5,7 +5,8 @@ import { UserContext } from "./UserProvider";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { CircularProgress, Pagination } from "@mui/material";
+import { CircularProgress, Pagination, Alert } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -26,6 +27,8 @@ export function Articles({articles, setArticles, page, setPage}) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [error, setError] = useState(false)
+    const [alertMessage, setAlertMessage] = useState('')
+    const [showAlertMessage, setShowAlertMessage] = useState(false)
 
     const sortOption = searchParams.get("sort_by") || "created_at"
     const orderOption = searchParams.get("order") || "desc"
@@ -77,7 +80,13 @@ export function Articles({articles, setArticles, page, setPage}) {
 
 
     return (
-        <section className="articles-page">  
+        <section className="articles-page">
+             { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
+            {alertMessage}
+            </Alert> : null }
+            { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
+                {alertMessage}
+            </Alert> : null }  
             <div className='article-header '>
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
@@ -121,13 +130,15 @@ export function Articles({articles, setArticles, page, setPage}) {
             </div>
             <ul className="px-[1rem]">
                 {articles.map((article) => {
-                    return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
+                    return (<div key={article.article_id}>
+                        <ArticleCard article={article} articles={articles} setArticles={setArticles} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage} className='article-card'/>
+                    </div>)
                 })}
             </ul>
             <ArticlePagination page={page} setPage={setPage} topic={topic} totalPages={totalPages}/>
-            {currentUser.username ? <div className='fixed bottom-5 right-5 p-[1rem]'>
+            <div className='fixed bottom-5 right-5 p-[1rem]'>
                 <FloatingActionBtn/>
-            </div> : null }
+            </div> 
         </section>
     )
   

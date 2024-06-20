@@ -14,6 +14,7 @@ import { BookmarkRemove } from "@mui/icons-material";
 import { ArticleNotFound } from "./ArticleNotFound";
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from "react-share";
 import { CommentPagination } from "./CommentPagination";
+import { FloatingActionBtn } from "./FloatingActionBtn";
 
 
 export function ArticlesById({setBookmarked, bookmarked}) {
@@ -131,6 +132,9 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}
             currArticle={currArticle}/>
         </section>
+        <div className='fixed bottom-5 right-5 p-[1rem]'>
+                <FloatingActionBtn/>
+            </div> 
         </>
     )
 }

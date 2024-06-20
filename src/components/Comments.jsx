@@ -30,7 +30,11 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     }
 
     if (!comments.length) {
-        return <p className="p-[2rem]">No comments yet...</p>
+        return (<>
+            <p className="p-[2rem]">No comments yet...</p>
+            <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
+        </>
+       )
     }
 
     function handleDelete(commentToRemove) {
