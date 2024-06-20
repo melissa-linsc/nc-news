@@ -2,7 +2,7 @@ import { getArticleComments, deleteComments } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "./UserProvider";
 import { useParams } from "react-router-dom";
-import { NewComment } from "./NewComment";
+import { NewComment } from "./PostComment";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CommentPagination } from "./CommentPagination";
 import { CommentVotes } from "./CommentVotes";
@@ -30,7 +30,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     }
 
     if (!comments.length) {
-        return <p>No comments yet...</p>
+        return <p className="p-[2rem]">No comments yet...</p>
     }
 
     function handleDelete(commentToRemove) {

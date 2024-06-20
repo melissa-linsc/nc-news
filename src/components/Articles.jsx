@@ -1,6 +1,7 @@
 import { getArticles, getTopics, getTotalArticles } from "../utils/api";
 import { capitaliseStr } from "../utils/capitaliseStr";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "./UserProvider";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
 import { Link, useParams, useSearchParams } from "react-router-dom";
@@ -11,10 +12,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { PageNotFound } from "./PageNotFound";
 import { ArticlePagination } from "./ArticlePagination";
+import { FloatingActionBtn } from "./FloatingActionBtn";
 
-export function Articles({page, setPage}) {
+export function Articles({articles, setArticles, page, setPage}) {
 
-    const [articles, setArticles] = useState([])
+    const { currentUser } = useContext(UserContext)
+
     const [isLoading, setIsLoading] = useState(true)
 
     const [totalArticles, setTotalArticles] = useState(0)
@@ -79,11 +82,13 @@ export function Articles({page, setPage}) {
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
                 <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' className="formControl">
-                <InputLabel labeld="sortby-input" className="dark:text-[#f8f8f2]">Sort By</InputLabel>
+                <InputLabel labeld="sortby-input" className="dark:text-[#f8f8f2]"
+                >Sort By</InputLabel>
                 <Select
                     className='select-form dark:text-[#f8f8f2] dark:border-red-400'
                     labelId="sortby-input"
                     id="sortby-input"
+                    name="sortby"
                     label="sortby"
                     onChange={handleSortChange}
                     value={sortbyInput}
@@ -97,11 +102,13 @@ export function Articles({page, setPage}) {
                 </Select>
                 </FormControl>
                 <FormControl sx={{minWidth: 100 }} variant="standard" className='order-form'>
-                <InputLabel className="dark:text-[#f8f8f2]">Order</InputLabel>
+                <InputLabel className="dark:text-[#f8f8f2]"
+               >Order</InputLabel>
                 <Select
                     className='select-form dark:text-[#f8f8f2]'
                     labelId="order-input"
                     id="order-input"
+                    name="order"
                     label="order"
                     onChange={handleOrderChange}
                     value={orderInput}
@@ -118,6 +125,9 @@ export function Articles({page, setPage}) {
                 })}
             </ul>
             <ArticlePagination page={page} setPage={setPage} topic={topic} totalPages={totalPages}/>
+            {currentUser.username ? <div className='fixed bottom-5 right-5 p-[1rem]'>
+                <FloatingActionBtn/>
+            </div> : null }
         </section>
     )
   
