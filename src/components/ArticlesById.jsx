@@ -12,6 +12,7 @@ import { CircularProgress } from "@mui/material";
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { BookmarkRemove } from "@mui/icons-material";
 import { ArticleNotFound } from "./ArticleNotFound";
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from "react-share";
 
 
 export function ArticlesById({setBookmarked, bookmarked}) {
@@ -87,6 +88,8 @@ export function ArticlesById({setBookmarked, bookmarked}) {
     const dateObj = new Date(currArticle.created_at)
     const date = dateObj.toDateString() + " " + dateObj.toTimeString().substring(0,8)
 
+    const currentURL = window.location.href
+
     return (
         <>
         { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
@@ -100,7 +103,12 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <div>
             <div className='flex items-center justify-between'>
                 <Chip id="article-topic" label={currArticle.topic} className="dark:bg-slate-200"/>
-                { !isBookmarked ? <BookmarkAddIcon style={{fontSize: '2rem'}} onClick={() => handleBookmarkAdd(currArticle)} className="hover:text-[#DD3232]"></BookmarkAddIcon> : <BookmarkRemove style={{fontSize: '2rem'}} onClick={() => handleBookmarkRemove(currArticle)} className="hover:text-[#DD3232]" ></BookmarkRemove>}
+                <div className="flex items-center">
+                    { !isBookmarked ? <BookmarkAddIcon style={{fontSize: '2rem'}} onClick={() => handleBookmarkAdd(currArticle)} className="hover:text-[#DD3232]"></BookmarkAddIcon> : <BookmarkRemove style={{fontSize: '2rem'}} onClick={() => handleBookmarkRemove(currArticle)} className="hover:text-[#DD3232]" ></BookmarkRemove>}
+                    <FacebookShareButton url={currentURL} className="w-[2rem] rounded"><FacebookIcon className="w-[1.8rem]" round={true}></FacebookIcon></FacebookShareButton>
+                    <TwitterShareButton url={currentURL} className="w-[2rem] rounded"><TwitterIcon className="w-[1.8rem]" round={true}></TwitterIcon></TwitterShareButton>
+                    <WhatsappShareButton url={currentURL} className="w-[2rem] rounded"><WhatsappIcon className="w-[1.8rem]" round={true}></WhatsappIcon></WhatsappShareButton>
+                </div>
             </div>
             <h2 id="article-title">{currArticle.title}</h2>
             <div className="date-and-author">
