@@ -99,7 +99,7 @@ export function ArticlesById({setBookmarked, bookmarked}) {
         { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
             {alertMessage}
         </Alert> : null }
-        <section className="article p-[1.5rem] lg:flex lg:flex-row">
+        <section className="article lg:flex lg:flex-row">
             <img src={currArticle.article_img_url} className="max-w-[800px] lg:min-w-[600px] lg:mr-[2rem]"/>
             <div>
             <div className='flex items-center justify-between'>
@@ -123,10 +123,10 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <p id="article-commentCount">Comments: {commentCount}</p>
             </div>
         </section>
-        <section className="voting-section px-[1.5rem]">
+        <section className="voting-section ">
             <ArticleVotes currArticle={currArticle}/>
         </section>
-        <section className="comment-section px-[1.5rem]">
+        <section className="comment-section ">
             <h2 className="comments-header ml-[2rem]">Comments</h2>
             <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}
             currArticle={currArticle}/>
