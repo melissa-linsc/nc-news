@@ -1,7 +1,7 @@
 import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 
-export function PagePagination({page, setPage, topic, totalPages}) {
+export function ArticlePagination({page, setPage, topic, totalPages}) {
 
     function handlePage(page) {
         setPage(page)

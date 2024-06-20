@@ -13,6 +13,7 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { BookmarkRemove } from "@mui/icons-material";
 import { ArticleNotFound } from "./ArticleNotFound";
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from "react-share";
+import { CommentPagination } from "./CommentPagination";
 
 
 export function ArticlesById({setBookmarked, bookmarked}) {
@@ -126,7 +127,7 @@ export function ArticlesById({setBookmarked, bookmarked}) {
             <ArticleVotes currArticle={currArticle}/>
         </section>
         <section className="comment-section">
-            <h2 className="comments-header">Comments</h2>
+            <h2 className="comments-header ml-[2rem]">Comments</h2>
             <Comments setCommentCount={setCommentCount} commentCount={commentCount} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage}/>
         </section>
         </>

@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { PageNotFound } from "./PageNotFound";
-import { PagePagination } from "./Pagination";
+import { ArticlePagination } from "./ArticlePagination";
 
 export function Articles({page, setPage}) {
 
@@ -117,7 +117,7 @@ export function Articles({page, setPage}) {
                     return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
                 })}
             </ul>
-            <PagePagination page={page} setPage={setPage} topic={topic} totalPages={totalPages}/>
+            <ArticlePagination page={page} setPage={setPage} topic={topic} totalPages={totalPages}/>
         </section>
     )
   

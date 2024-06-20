@@ -4,6 +4,7 @@ import { UserContext } from "./UserProvider";
 import { useParams } from "react-router-dom";
 import { NewComment } from "./NewComment";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { CommentPagination } from "./CommentPagination";
 import '../styles/ArticlesById.css'
 
 export function Comments({setCommentCount, commentCount, setAlertMessage, setShowAlertMessage}) {
@@ -58,7 +59,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     }
 
     return (
-        <>
+        <div className="m-[2rem]">
             <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
             <ul className="flex content-start">
                 {comments.map((comment) => {
@@ -69,7 +70,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                     const dateTime = date + " " + time
 
                     return (
-                        <li key={comment.comment_id}>
+                        <li key={comment.comment_id} className="my-[0.5] w-[50rem]">
                         <div className="chat chat-start w-9/10" >
                         <div className="chat-header">
                             {comment.author}
@@ -87,6 +88,7 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                     )
                 })}
             </ul>
-        </>
+            <CommentPagination comments={comments}/>
+        </div>
     )
 }
