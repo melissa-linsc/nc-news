@@ -26,6 +26,8 @@ https://nc-news-melissalin.netlify.app/
 
 ## Installation
 
+If you want to run my repository locally follow these steps..
+
 1. Clone the repository
 
 ```
@@ -42,6 +44,9 @@ npm install
 
 The backend NC News API repo can be found here: 
 https://github.com/melissa-linsc/NC-News-API
+
+Link to API:
+https://nc-news-api-ewli.onrender.com/api
 
 <hr>
 

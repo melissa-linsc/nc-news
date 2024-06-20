@@ -36,7 +36,7 @@ export function NewComment({comments, setComments, setCommentCount, commentCount
         <section className="newComment-section">
             { currentUser.username ? <form onSubmit={handleSubmit} id="newComment-form">
                 <label htmlFor="comment-input"></label>
-                <TextField type="text" placeholder="Add comment" name="comment-input" id="comment-input" value={commentInput} onChange={handleChange} variant="outlined" required></TextField>
+                <TextField type="text" placeholder="Add comment" name="comment-input" id="comment-input" value={commentInput} onChange={handleChange} variant="filled" required className="border-white dark:bg-white dark:opacity-60"></TextField>
                 <Button type="submit"  id="newComment-button">Post</Button>
             </form> : <p id="login-comment-msg">Login to leave a comment</p>}
             <p>{successMessage}</p>

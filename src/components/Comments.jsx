@@ -73,9 +73,9 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                         <div className="chat chat-start w-9/10" >
                         <div className="chat-header">
                             {comment.author}
-                            <time className="text-xs opacity-50 ml-4">{dateTime}</time>
+                            <time className="text-xs opacity-50 ml-4 dark:opacity-70">{dateTime}</time>
                         </div>
-                        <div className="chat-bubble bg-slate-100">
+                        <div className="chat-bubble bg-slate-100 text-[#282a36] dark:bg-[#f8f8f2] dark:text-[#282a36]">
                             {comment.body}
                             { currentUser.username === comment.author ? <DeleteIcon onClick={() => {handleDelete(comment)}} id="deleteComment-icon" className="ml-3"></DeleteIcon> : null}
                         </div>

@@ -9,10 +9,14 @@ import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CircularProgress } from "@mui/material";
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import { BookmarkRemove } from "@mui/icons-material";
 import { ArticleNotFound } from "./ArticleNotFound";
 
 
-export function ArticlesById() {
+export function ArticlesById({setBookmarked, bookmarked}) {
+
+    const [isBookmarked, setIsBookmarked] = useState(false)
 
     const {article_id} = useParams()
 
@@ -31,6 +35,11 @@ export function ArticlesById() {
             setError(false)
             setCurrArticle(article)
             setIsLoading(false)
+            for (const article of bookmarked) {
+                if (article.article_id === Number(article_id)) {
+                    setIsBookmarked(true)
+                }
+            }
         })
         .catch((err) => {
             setError(true)
@@ -49,6 +58,32 @@ export function ArticlesById() {
         )
     }
 
+    function handleBookmarkAdd(articleToAdd) {
+        for (const article of bookmarked) {
+            if (article.article_id === articleToAdd.article_id) {
+                setAlertMessage('Error, article already bookmarked')
+                setShowAlertMessage(true)
+               setTimeout(() => {
+                setShowAlertMessage(false)
+            }, 4000)
+                return
+            }
+        }
+        setBookmarked((currBookmarked) => {
+            return [currArticle, ...currBookmarked]
+        })
+        setIsBookmarked(true)
+    }
+
+    function handleBookmarkRemove(articleToRemove) {
+        setBookmarked((currBookmarked) => {
+            return currBookmarked.filter((article) => {
+                return article.article_id !== articleToRemove.article_id
+            })
+        })
+        setIsBookmarked(false)
+    }
+
     const dateObj = new Date(currArticle.created_at)
     const date = dateObj.toDateString() + " " + dateObj.toTimeString().substring(0,8)
 
@@ -60,9 +95,13 @@ export function ArticlesById() {
         { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
             {alertMessage}
         </Alert> : null }
-        <section className="article">
-            <img src={currArticle.article_img_url} />
-            <Chip id="article-topic" label={currArticle.topic} />
+        <section className="article lg:flex lg:flex-row">
+            <img src={currArticle.article_img_url} className="max-w-[800px] lg:min-w-[600px] lg:mr-[2rem]"/>
+            <div>
+            <div className='flex items-center justify-between'>
+                <Chip id="article-topic" label={currArticle.topic} className="dark:bg-slate-200"/>
+                { !isBookmarked ? <BookmarkAddIcon style={{fontSize: '2rem'}} onClick={() => handleBookmarkAdd(currArticle)} className="hover:text-[#DD3232]"></BookmarkAddIcon> : <BookmarkRemove style={{fontSize: '2rem'}} onClick={() => handleBookmarkRemove(currArticle)} className="hover:text-[#DD3232]" ></BookmarkRemove>}
+            </div>
             <h2 id="article-title">{currArticle.title}</h2>
             <div className="date-and-author">
                 <p id="article-date">{date}</p>
@@ -73,6 +112,7 @@ export function ArticlesById() {
             </div>
             <p id="article-body">{currArticle.body}</p>
             <p id="article-commentCount">Comments: {commentCount}</p>
+            </div>
         </section>
         <section className="voting-section">
             <ArticleVotes currArticle={currArticle}/>

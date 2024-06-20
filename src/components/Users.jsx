@@ -32,7 +32,7 @@ export function Users() {
         <ul className='user-list'>
             {users.map((user) => {
                 return <li key={user.username} onClick={() => setCurrentUser(user)}>
-                    <img src={user.avatar_url} />
+                    <img src={user.avatar_url} className="dark:bg-white"/>
                     <p id="username">{user.username}</p>
                 </li>
             })}
