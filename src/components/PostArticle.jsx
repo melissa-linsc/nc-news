@@ -63,11 +63,14 @@ export function PostArticle({articles, setArticles}) {
                 <input type="text" placeholder="Title" className="input input-bordered w-full max-w-xs border-[#DD3232]" maxLength="75"
                 onChange={handleChange}
                 name="title"
+                required
                 />
                 <label className="mt-5">Article</label>
                 <textarea className="textarea textarea-lg w-[90vw] h-[20rem] max-w-xs border-[#DD3232] mb-7" placeholder="Article"
                 onChange={handleChange}
-                name="body"></textarea>
+                name="body"
+                required>
+                </textarea>
                 <select className="p-2 border-[#DD3232]"
                 onChange={handleChange}
                 name="topic">

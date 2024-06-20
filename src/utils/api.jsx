@@ -78,3 +78,7 @@ export function postArticle(newArticle) {
         return newArticle.data.newArticle
     })
 }
+
+export function deleteArticle(article_id) {
+    return ncNews.delete(`/articles/${article_id}`)
+}

@@ -38,7 +38,7 @@ export function NewComment({comments, setComments, setCommentCount, commentCount
                 <label htmlFor="comment-input"></label>
                 <TextField type="text" placeholder="Add comment" name="comment-input" id="comment-input" value={commentInput} onChange={handleChange} variant="filled" required className="border-white dark:bg-white dark:opacity-60"></TextField>
                 <Button type="submit"  id="newComment-button">Post</Button>
-            </form> : <p id="login-comment-msg">Login to leave a comment</p>}
+            </form> : <p id="login-comment-msg" className="p-[2rem]">Login to leave a comment</p>}
             <p>{successMessage}</p>
         </section>
     )
