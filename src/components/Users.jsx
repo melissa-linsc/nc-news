@@ -20,7 +20,7 @@ export function Users() {
     if (isLoading) {
         return (
             <div className="spinner">
-                <CircularProgress color="secondary" />                
+                <CircularProgress color="primary" />                
             </div>
         )
     }
