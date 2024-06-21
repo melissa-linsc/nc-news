@@ -113,7 +113,7 @@ export function PostArticle({articles, setArticles}) {
                 value={newArticleInput.article_img_url}
                 />
                 <button type="submit" 
-                className='mb-[2rem] p-3 rounded-lg bg-[#DD3232] text-white' >Post</button>
+                className='mb-[3rem] p-3 rounded-lg bg-[#DD3232] text-white' >Post</button>
             </form>
         </section>
     )

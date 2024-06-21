@@ -91,38 +91,38 @@ export function Articles({articles, setArticles, page, setPage}) {
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
                 <FormControl variant="standard" sx={{ minWidth: 100 }} id='select-sortby' className="formControl">
-                <InputLabel labeld="sortby-input" className="dark:text-[#f8f8f2]"
+                <InputLabel  id='sortby-label' className="dark:text-[#f8f8f2]"
                 >Sort By</InputLabel>
                 <Select
                     className='select-form dark:text-[#f8f8f2] dark:border-red-400'
-                    labelId="sortby-input"
+                    labelId="sortby-label"
                     id="sortby-input"
                     name="sortby"
                     label="sortby"
                     onChange={handleSortChange}
                     value={sortbyInput}
                 >
-                    <MenuItem value="created_at">Date</MenuItem>
-                    <MenuItem value="title">Title</MenuItem>
+                    <MenuItem value="created_at" >Date</MenuItem>
+                    <MenuItem value="title" >Title</MenuItem>
                     <MenuItem value="votes">Votes</MenuItem>
-                    <MenuItem value="author">Author</MenuItem>
+                    <MenuItem value="author" >Author</MenuItem>
                     <MenuItem value="topic">Topic</MenuItem>
                     <MenuItem value="comment_count">Comments</MenuItem>
                 </Select>
                 </FormControl>
                 <FormControl sx={{minWidth: 100 }} variant="standard" className='order-form'>
-                <InputLabel className="dark:text-[#f8f8f2]"
+                <InputLabel className="dark:text-[#f8f8f2]" id="order-label"
                >Order</InputLabel>
                 <Select
                     className='select-form dark:text-[#f8f8f2]'
-                    labelId="order-input"
+                    labelId="order-label"
                     id="order-input"
                     name="order"
                     label="order"
                     onChange={handleOrderChange}
                     value={orderInput}
                 >
-                    <MenuItem value="desc">Descending</MenuItem>
+                    <MenuItem value="desc" >Descending</MenuItem>
                     <MenuItem value="asc">Ascending</MenuItem>
                 </Select>
                 </FormControl>
