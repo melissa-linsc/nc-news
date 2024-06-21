@@ -3,6 +3,7 @@ import { UserContext } from "./UserProvider";
 import { getUsers } from "../utils/api";
 import { CircularProgress } from "@mui/material";
 import '../styles/Users.css'
+import { FloatingActionBtn } from "./FloatingActionBtn";
 
 export function Users() {
 
@@ -37,6 +38,9 @@ export function Users() {
                 </li>
             })}
         </ul>
+        <div className='fixed bottom-5 right-5 p-[1rem]'>
+                <FloatingActionBtn/>
+        </div> 
     </section>
     )
 }

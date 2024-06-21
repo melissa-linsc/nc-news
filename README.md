@@ -18,7 +18,7 @@ NC News is a frontend dynamic single-page React application designed to provide 
 
 - **Post Articles**: Logged in users can post new articles
 
-- **Delete Articles**: Logged in users can delete their own articles.
+- **Delete Articles**: Logged in users can delete their own articles and is provided with a confirmation alert before deleting.
 
 ### Technologies
 

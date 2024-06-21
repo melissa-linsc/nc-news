@@ -5,43 +5,13 @@ import { UserContext } from './UserProvider';
 import { useContext } from 'react';
 import { deleteArticle } from '../utils/api';
 import { Link } from 'react-router-dom';
+import { ConfirmDelete } from './ConfirmDelete';
 
 export function ArticleCard({article, articles, setArticles, setAlertMessage, setShowAlertMessage}) {
     const createdAt = article.created_at
     const date = createdAt.substring(0,10)
 
     const { currentUser } = useContext(UserContext)
-
-    function handleDelete(articleToDelete) {
-        deleteArticle(articleToDelete.article_id).then(() => {
-        setAlertMessage('Article Deleted!')
-        setShowAlertMessage(true)
-           setTimeout(() => {
-            setShowAlertMessage(false)
-        }, 4000)
-        setArticles((currarticles) => {
-            const filteredarticles = currarticles.filter((currArticle) => {
-                return currArticle.article_id !== articleToDelete.article_id
-            })
-            return filteredarticles
-            })
-       })
-       .catch((err)=> {
-            setArticles(articles)
-            setAlertMessage('Error deleting comment, try again later')
-            setShowAlertMessage(true)
-            setTimeout(() => {
-                setShowAlertMessage(false)
-            }, 4000)
-       })
-    }
-
-    function handleClick(event) {
-      event.stopPropagation()
-      event.preventDefault()
-
-      handleDelete(article)
-    }
 
   return ( <>
     <Link to={`/articles/${article.article_id}`} className="link">
@@ -54,7 +24,7 @@ export function ArticleCard({article, articles, setArticles, setAlertMessage, se
           <h2 className="card-title overflow-hidden">
             {article.title}
           </h2>
-          { currentUser.username === article.author ? <DeleteIcon onClick={handleClick} ></DeleteIcon> : null}
+          { currentUser.username === article.author ?  <ConfirmDelete article={article} articles={articles} setArticles={setArticles} setAlertMessage={setAlertMessage} setShowAlertMessage={setShowAlertMessage} /> : null}
         </div>
         <p className="overflow-hidden"> By {article.author}<span className="ml-4 overflow-hidden">{date}</span>
         </p>
