@@ -38,7 +38,7 @@ export function Header() {
             { currentUser.username ? <Link className='header-link flex items-center' to="/users">
             <div className="avatar online m-0">
             <div className="w-[2.5rem] rounded-full">
-                <img src={currentUser.avatar_url} />
+                <img src={currentUser.avatar_url} className="bg-white"/>
             </div>
             </div>
             </Link> : <Link className='header-link' to="/users"><AccountCircleIcon className="header-icon dark:hover:text-[#DD3232]" style={{fontSize: 46}}></AccountCircleIcon></Link>}
