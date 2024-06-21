@@ -83,3 +83,10 @@ export function deleteArticle(article_id) {
     return ncNews.delete(`/articles/${article_id}`)
 }
 
+export function postUser(newUser) {
+    return ncNews.post('/users', newUser)
+    .then((user) => {
+        console.log(user)
+        return user.data.newUser
+    })
+}
