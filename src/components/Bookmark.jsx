@@ -1,10 +1,14 @@
 import { ArticleCard } from "./ArticleCard"
 import { Link } from "react-router-dom"
+import { Button } from "@mui/material"
 
 export function Bookmark({bookmarked, setBookmarked}) {
     
     if (!bookmarked.length) {
-        return <h2 className="text-center">No articles bookmarked yet...</h2>
+        return (<section className="No-articles-bookmarked flex justify-center items-center flex-col ">
+            <h2>No articles bookmarked yet...</h2>
+            <Link to='/' className='link-to-home'><Button variant="contained" >Browse Articles</Button></Link>
+                 </section>)
     }
     
     return (
@@ -12,7 +16,7 @@ export function Bookmark({bookmarked, setBookmarked}) {
             <h2 className="text-center font-bold text-xl">Bookmarked Articles</h2>
             <ul>
                 {bookmarked.map((article) => {
-                    return <Link to={`/articles/${article.article_id}`} key={article.article_id} className="link"><ArticleCard article={article} className='article-card'/></Link>
+                    return <ArticleCard article={article} key={article.article_id} className='article-card'/>
                 })}
             </ul>
         </>
