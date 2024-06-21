@@ -91,7 +91,7 @@ export function PostArticle({articles, setArticles}) {
                 >
                 </textarea>
                 <label>Topic</label>
-                <select className="p-2 border-[#DD3232] border-2 rounded-lg dark:bg-[#282a36]"
+                <select className="p-2 border-[#DD3232] border-2 rounded-lg dark:bg-[#282a36] bg-white"
                 onChange={handleChange}
                 name="topic"
                 value={newArticleInput.topic}>
