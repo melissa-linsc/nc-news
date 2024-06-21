@@ -1,9 +1,6 @@
 import * as React from 'react';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { UserContext } from './UserProvider';
 import { useContext } from 'react';
-import { deleteArticle } from '../utils/api';
 import { Link } from 'react-router-dom';
 import { ConfirmDelete } from './ConfirmDelete';
 

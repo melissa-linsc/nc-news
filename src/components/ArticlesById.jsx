@@ -13,7 +13,7 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { BookmarkRemove } from "@mui/icons-material";
 import { ArticleNotFound } from "./ArticleNotFound";
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from "react-share";
-import { CommentPagination } from "./CommentPagination";
+import { SuccessAlert } from "./SuccessAlert";
 import { FloatingActionBtn } from "./FloatingActionBtn";
 
 
@@ -94,12 +94,7 @@ export function ArticlesById({setBookmarked, bookmarked}) {
 
     return (
         <>
-        { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
-            {alertMessage}
-        </Alert> : null }
-        { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
-            {alertMessage}
-        </Alert> : null }
+       <SuccessAlert showAlertMessage={showAlertMessage} alertMessage={alertMessage}/>
         <section className="article lg:flex lg:flex-row">
             <img src={currArticle.article_img_url} className="max-w-[800px] lg:min-w-[600px] lg:mr-[2rem]"/>
             <div>

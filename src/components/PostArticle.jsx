@@ -5,8 +5,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from "./UserProvider";
 import { postArticle } from '../utils/api';
-import CheckIcon from '@mui/icons-material/Check';
-import { Alert }from '@mui/material';
+import { SuccessAlert } from './SuccessAlert';
 
 
 export function PostArticle({articles, setArticles}) {
@@ -73,12 +72,7 @@ export function PostArticle({articles, setArticles}) {
 
     return (
         <section className="flex flex-col place-items-center">
-            { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
-            {alertMessage}
-            </Alert> : null }
-            { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
-                {alertMessage}
-            </Alert> : null }
+            <SuccessAlert showAlertMessage={showAlertMessage} alertMessage={alertMessage}/>
             <h2 className="font-bold text-[1.5rem] pb-5">New Article</h2>
             <form className="flex flex-col w-[80vw]" onSubmit={handleSubmit}>
                 <label>Title *</label>

@@ -1,4 +1,4 @@
-import { getArticleComments, deleteComments } from "../utils/api";
+import { getArticleComments, deleteComments, getUsers } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "./UserProvider";
 import { useParams } from "react-router-dom";
@@ -16,17 +16,25 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const [users, setUsers] = useState([])
+
     const [commentPage, setCommentPage] = useState(1)
 
     useEffect(() => {
         getArticleComments(article_id, commentPage).then((comments) => {
             setComments(comments)
-            setIsLoading(false)
+        }).then(() => {
+            getUsers().then((users) => {
+                setUsers(users)
+                setIsLoading(false)
+            })
         })
+
+     
     }, [article_id, commentPage])
 
     if (isLoading) {
-        return <p>Comments loading...</p>
+        return <p className="p-[2rem]">Comments loading...</p>
     }
 
     if (!comments.length) {
@@ -66,9 +74,9 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
     }
 
     return (
-        <div className="m-[2rem]">
+        <div>
             <NewComment comments={comments} setComments={setComments} setCommentCount={setCommentCount} commentCount={commentCount}/>
-            <ul className="flex content-start">
+            <ul className="flex content-start m-[2rem]">
                 {comments.map((comment) => {
                     const dateObj = new Date(comment.created_at)
                     const date = comment.created_at.substring(0,10)
@@ -79,6 +87,11 @@ export function Comments({setCommentCount, commentCount, setAlertMessage, setSho
                     return (
                         <li key={comment.comment_id} className="my-[0.5] w-[50rem]">
                         <div className="chat chat-start w-9/10" >
+                        <div className="chat-image avatar">
+                            <div className="w-10 rounded-full border-2 border-[#DD3232] bg-white">
+                            <img alt="comment author avatar" src={users.find(user => user.username === comment.author).avatar_url} className="" />
+                            </div>
+                        </div>
                         <div className="chat-header">
                             {comment.author}
                             <time className="text-xs opacity-50 ml-4 dark:opacity-70">{dateTime}</time>

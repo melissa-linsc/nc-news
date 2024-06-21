@@ -4,14 +4,14 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "./UserProvider";
 import { ArticleCard } from "./ArticleCard";
 import '../styles/Articles.css'
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { CircularProgress, Pagination, Alert } from "@mui/material";
-import CheckIcon from '@mui/icons-material/Check';
+import { useParams, useSearchParams } from "react-router-dom";
+import { CircularProgress} from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { PageNotFound } from "./PageNotFound";
+import { SuccessAlert } from "./SuccessAlert";
 import { ArticlePagination } from "./ArticlePagination";
 import { FloatingActionBtn } from "./FloatingActionBtn";
 
@@ -63,7 +63,7 @@ export function Articles({articles, setArticles, page, setPage}) {
     if (isLoading) {
         return (
             <div className="spinner">
-                <CircularProgress color="primary" />                
+                <CircularProgress color="primary" />           
             </div>
         )
     }
@@ -81,12 +81,7 @@ export function Articles({articles, setArticles, page, setPage}) {
 
     return (
         <section className="articles-page">
-             { showAlertMessage && !alertMessage.includes('Error') && alertMessage ? <Alert icon={<CheckIcon fontSize="inherit" />} severity="success" className="alert-message">
-            {alertMessage}
-            </Alert> : null }
-            { showAlertMessage && alertMessage.includes('Error') && alertMessage ? <Alert severity="error" className="alert-message">
-                {alertMessage}
-            </Alert> : null }  
+             <SuccessAlert showAlertMessage={showAlertMessage} alertMessage={alertMessage}/>
             <div className='article-header '>
                 { topic ? <h2 id="articles-title">{capitaliseStr(topic)} </h2> : <h2 id="articles-title" >All Articles</h2>}
                 <div className='query-forms'>
