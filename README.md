@@ -14,11 +14,14 @@ NC News is a frontend dynamic single-page React application designed to provide 
 
 - **Article Voting**: Upvote or downvote Articles
 
+- **Users**: Login as an existing user or signup to create a new user. When logged in, this grants access to interactive functionality such as posting comments and articles.
+
 - **Comments Interaction**: Read and engage with comments by upvoting or downvoting them on articles. Logged in users can post new comments and delete their own comments.
 
 - **Post Articles**: Logged in users can post new articles
 
 - **Delete Articles**: Logged in users can delete their own articles and is provided with a confirmation alert before deleting.
+
 
 ### Technologies
 
