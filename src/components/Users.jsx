@@ -52,7 +52,7 @@ export function Users() {
             })}
         </ul>
         <div className="flex justify-center pb-[3rem]">
-            <button className="text-[#DD3232] dark:text-white" onClick={handleSignUpClick}>New user? Sign Up Here</button>
+            <button className="text-[#DD3232]" onClick={handleSignUpClick}>New user? Sign Up Here</button>
         </div>
         <div className='fixed bottom-5 right-5 p-[1rem]'>
                 <FloatingActionBtn/>
