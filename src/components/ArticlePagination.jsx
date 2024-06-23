@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export function ArticlePagination({page, setPage, topic, totalPages}) {
 
     function handlePage(page) {
+        window.scrollTo(0,0)
         setPage(page)
     }
 
